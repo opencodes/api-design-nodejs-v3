@@ -24,6 +24,11 @@ app.get('/', logQueryMiddleWare, (req:any, res:any) => {
     "status":"OK"
   })
 })
+app.get('/:id', logQueryMiddleWare, (req:any, res:any) => {
+  res.json({
+    "status":"OK"
+  })
+})
 app.post('/signup', signup)
 app.post('/signin', signin)
 
