@@ -8,6 +8,7 @@ import { connect } from './utils/db'
 import userRouter from './resources/user/user.router'
 import itemRouter from './resources/item/item.router'
 import listRouter from './resources/list/list.router'
+import { logQueryMiddleWare } from './middleware/routingMiddleware'
 
 export const app = express()
 
@@ -18,6 +19,11 @@ app.use(json())
 app.use(urlencoded({ extended: true }))
 app.use(morgan('dev'))
 
+app.get('/', logQueryMiddleWare, (req:any, res:any) => {
+  res.json({
+    "status":"OK"
+  })
+})
 app.post('/signup', signup)
 app.post('/signin', signin)
 
